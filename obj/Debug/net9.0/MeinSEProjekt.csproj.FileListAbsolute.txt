@@ -1,0 +1,15 @@
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\bin\Debug\net9.0\MeinSEProjekt.exe
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\bin\Debug\net9.0\MeinSEProjekt.deps.json
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\bin\Debug\net9.0\MeinSEProjekt.runtimeconfig.json
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\bin\Debug\net9.0\MeinSEProjekt.dll
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\bin\Debug\net9.0\MeinSEProjekt.pdb
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.AssemblyInfoInputs.cache
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.AssemblyInfo.cs
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.csproj.CoreCompileInputs.cache
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.sourcelink.json
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.dll
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\refint\MeinSEProjekt.dll
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.pdb
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\MeinSEProjekt.genruntimeconfig.cache
+C:\Users\NiedenthalAlbert\Projekte\MeinSEProjekt\obj\Debug\net9.0\ref\MeinSEProjekt.dll

@@ -9,5 +9,7 @@ namespace MeinSEProjekt
     class Kunde : Benutzer
     {
         public Kunde(string benutzername, string passwort) : base(benutzername, passwort) { }
+
+        public string Benutzername { get; internal set; }
     }
 }

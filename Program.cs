@@ -53,7 +53,7 @@ namespace MeinSEProjekt
                 Console.WriteLine("3. Registrieren");
                 Console.WriteLine("4. Beenden");
 
-                string auswahl = Console.ReadLine();
+                string? auswahl = Console.ReadLine();
                 switch (auswahl)
                 {
                     case "1": Login(false); break;
@@ -98,9 +98,35 @@ namespace MeinSEProjekt
                 return (name, pw);
             }
 
-            static void Login ( bool istAdmin)
+            static void Login(bool istAdmin)
             {
+                var (name, pw) = BenutzerAnmeldedaten();
 
+                if (istAdmin)
+                {
+                    var admin = admins.Find(a => a.Benutzername == name && a.Pruefen(pw));
+                    if (admin != null)
+                    {
+                        admin.Log($"Admin {name} hat sich eingeloggt.");
+                        Console.WriteLine("Login erfolgreich.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Login fehlgeschlagen.");
+                    }
+                }
+                else
+                {
+                    var kunde = kunden.Find(k => k.Benutzername == name && k.Pruefen(pw));
+                    if (kunde != null)
+                    {
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine("Login fehlgeschlagen.");
+                    }
+                }
             }
         }
     }   
