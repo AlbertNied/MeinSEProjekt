@@ -17,10 +17,10 @@ namespace MeinSEProjekt
 
         static void Main()
         {
-            
+
             DatenLaden();
 
-            static void DatenLaden() 
+            static void DatenLaden()
             {
                 if (File.Exists(kundenDatei))
                 {
@@ -101,33 +101,52 @@ namespace MeinSEProjekt
             static void Login(bool istAdmin)
             {
                 var (name, pw) = BenutzerAnmeldedaten();
+                List<Benutzer> benutzerListe = istAdmin ? new List<Benutzer>(admins) : new List<Benutzer>(kunden);
+                var benutzer = benutzerListe.Find(b => b.BenutzerName == name && b.Pruefen(pw));
 
-                if (istAdmin)
+                if (benutzer != null)
                 {
-                    var admin = admins.Find(a => a.Benutzername == name && a.Pruefen(pw));
-                    if (admin != null)
+                    Console.WriteLine($"Login erfolgreich: {benutzer.BenutzerName}");
+
+                    if (benutzer is BankMitarbeiter admin)
                     {
-                        admin.Log($"Admin {name} hat sich eingeloggt.");
-                        Console.WriteLine("Login erfolgreich.");
+                        admin.Log($"{admin.Benutzername} hat sich eingeloggt.");
                     }
-                    else
+                    else if (benutzer is Kunde kunde)
                     {
-                        Console.WriteLine("Login fehlgeschlagen.");
+                        KundenMenu(kunde);
                     }
                 }
                 else
                 {
-                    var kunde = kunden.Find(k => k.Benutzername == name && k.Pruefen(pw));
-                    if (kunde != null)
+                    Console.WriteLine("Login fehlgeschlagen.");
+                }
+            }
+
+            static void KundenMenu(Kunde k)
+            {
+
+                while (true)
+                {
+
+                    Console.WriteLine("1. Kontostand anzeigen");
+                    Console.WriteLine("2. Einzahlen");
+                    Console.WriteLine("3. Abheben");
+                    Console.WriteLine("4. Festgeld anlegen");
+                    Console.WriteLine("5. Kredit aufnehmen");
+                    Console.WriteLine("6. Monatsabrechnung");
+                    Console.WriteLine("0. Logout");
+                    string? kundeEingabe = Console.ReadLine();
+
+                    switch (kundeEingabe)
                     {
-                        
-                    }
-                    else
-                    {
-                        Console.WriteLine("Login fehlgeschlagen.");
+                        case "1": Console.WriteLine($"Kontostand: {k.Kontostand} EUR, Festgeld: {k.Festgeld}, Kredit: {k.Kredit}"); break;
+                        case "2": Console.Write("Betrag: "); k.Einzahlen(decimal.Parse(Console.ReadLine())); break;
+                      
                     }
                 }
             }
+
         }
-    }   
+    }
 }
