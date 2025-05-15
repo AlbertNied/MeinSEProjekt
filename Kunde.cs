@@ -6,23 +6,19 @@ using System.Threading.Tasks;
 
 namespace MeinSEProjekt
 {
-    class Kunde : Benutzer
+    class Kunde : Benutzer, ITransaktion
 
     {
-        public decimal Kontostand { get; set; } = 0;
-        public decimal Festgeld { get; set; } = 0;
-        public decimal Kredit { get; set; } = 0;
+        public decimal Kontostand { get; private set; } 
+        public decimal Festgeld { get; private set; } 
+        public decimal Kredit { get; private set; } 
 
         public Kunde(string benutzername, string passwort) : base(benutzername, passwort) { }
 
-        public string Benutzername { get; internal set; }
 
-        public void Erledigen(decimal betrag)
-        {
-            Kontostand += betrag;
-        }
 
-        public void Einzahlen(decimal betrag) => Erledigen(betrag);
+
+        public void Einzahlen(decimal betrag) => Durchfueren(betrag);
 
         public bool Abheben(decimal betrag)
         {
@@ -45,6 +41,11 @@ namespace MeinSEProjekt
         public void MonatsAbrechnung()
         {
             Festgeld *= 1.01m;
+        }
+
+        public void Durchfueren(decimal betrag)
+        {
+            Kontostand += betrag;
         }
     }
 }

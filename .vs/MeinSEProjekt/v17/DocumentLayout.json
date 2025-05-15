@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\kunde.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|solutionrelative:kunde.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\itransaktion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|solutionrelative:itransaktion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\benutzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|solutionrelative:benutzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\kunde.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|solutionrelative:kunde.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\bankmitarbeiter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|solutionrelative:bankmitarbeiter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\benutzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|solutionrelative:benutzer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{68AA4AF1-4F15-4764-B4EC-78E3F40AA23C}|MeinSEProjekt.csproj|c:\\users\\niedenthalalbert\\projekte\\meinseprojekt\\meinseprojekt.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,13 +54,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Benutzer.cs",
               "DocumentMoniker": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\Benutzer.cs",
               "RelativeDocumentMoniker": "Benutzer.cs",
               "ToolTip": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\Benutzer.cs",
               "RelativeToolTip": "Benutzer.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAA0AAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T07:21:10.949Z",
               "EditorCaption": ""
@@ -69,22 +73,9 @@
               "RelativeDocumentMoniker": "BankMitarbeiter.cs",
               "ToolTip": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\BankMitarbeiter.cs",
               "RelativeToolTip": "BankMitarbeiter.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T07:20:29.146Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Kunde.cs",
-              "DocumentMoniker": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\Kunde.cs",
-              "RelativeDocumentMoniker": "Kunde.cs",
-              "ToolTip": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\Kunde.cs",
-              "RelativeToolTip": "Kunde.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAwwC4AAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T07:19:07.118Z",
               "EditorCaption": ""
             },
             {
@@ -95,14 +86,40 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAAAJAAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAI4AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T09:00:29.191Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "ITransaktion.cs",
+              "DocumentMoniker": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\ITransaktion.cs",
+              "RelativeDocumentMoniker": "ITransaktion.cs",
+              "ToolTip": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\ITransaktion.cs",
+              "RelativeToolTip": "ITransaktion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T09:44:54.171Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Kunde.cs",
+              "DocumentMoniker": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\Kunde.cs",
+              "RelativeDocumentMoniker": "Kunde.cs",
+              "ToolTip": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\Kunde.cs",
+              "RelativeToolTip": "Kunde.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAIwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T07:19:07.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "MeinSEProjekt.csproj",
               "DocumentMoniker": "C:\\Users\\NiedenthalAlbert\\Projekte\\MeinSEProjekt\\MeinSEProjekt.csproj",
               "RelativeDocumentMoniker": "MeinSEProjekt.csproj",

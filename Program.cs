@@ -23,25 +23,18 @@ namespace MeinSEProjekt
             static void DatenLaden()
             {
                 if (File.Exists(kundenDatei))
-                {
-                    JsonSerializer.Deserialize<List<Kunde>>(File.ReadAllText(kundenDatei));
-                }
+                    kunden = JsonSerializer.Deserialize<List<Kunde>>(File.ReadAllText(kundenDatei)) ?? new List<Kunde>();
                 if (File.Exists(adminDatei))
-                {
-                    JsonSerializer.Deserialize<List<BankMitarbeiter>>(File.ReadAllText(adminDatei));
-                }
+                    admins = JsonSerializer.Deserialize<List<BankMitarbeiter>>(File.ReadAllText(adminDatei)) ?? new List<BankMitarbeiter>();
             }
 
-            static void DatenSpeichern()
-            {
-                File.WriteAllText(kundenDatei, JsonSerializer.Serialize(kunden));
-                File.WriteAllText(adminDatei, JsonSerializer.Serialize(admins));
-            }
 
             if (admins.Count == 0)
             {
                 Console.WriteLine("Noch kein Bankmitarbeiter registriert. Bitte registrieren.");
                 Registrieren(true);
+                
+
             }
 
             Console.WriteLine("Willkommen zur Banksoftware");
@@ -71,18 +64,24 @@ namespace MeinSEProjekt
                 {
                     admins.Add(new BankMitarbeiter(name, pw));
                     Console.WriteLine("Bankmitarbeiter erfolgreich registriert.");
+                    
                 }
                 else
                 {
                     kunden.Add(new Kunde(name, pw));
                     Console.WriteLine("Kunde erfolgreich registriert.");
+                    
+                    
                 }
+                DatenSpeichern();
+
+
             }
 
             static (string name, string pw) BenutzerAnmeldedaten()
             {
 
-                string? name, pw;
+                string name, pw;
                 do
                 {
                     Console.Write("Benutzername: ");
@@ -110,7 +109,7 @@ namespace MeinSEProjekt
 
                     if (benutzer is BankMitarbeiter admin)
                     {
-                        admin.Log($"{admin.Benutzername} hat sich eingeloggt.");
+                        admin.Log($"{admin.BenutzerName} hat sich eingeloggt.");
                     }
                     else if (benutzer is Kunde kunde)
                     {
@@ -136,17 +135,56 @@ namespace MeinSEProjekt
                     Console.WriteLine("5. Kredit aufnehmen");
                     Console.WriteLine("6. Monatsabrechnung");
                     Console.WriteLine("0. Logout");
+
                     string? kundeEingabe = Console.ReadLine();
 
                     switch (kundeEingabe)
                     {
-                        case "1": Console.WriteLine($"Kontostand: {k.Kontostand} EUR, Festgeld: {k.Festgeld}, Kredit: {k.Kredit}"); break;
-                        case "2": Console.Write("Betrag: "); k.Einzahlen(decimal.Parse(Console.ReadLine())); break;
-                      
+                        case "1": 
+                            Console.WriteLine($"Kontostand: {k.Kontostand} EUR, Festgeld: {k.Festgeld}, Kredit: {k.Kredit}"); 
+                            break;
+                        case "2": 
+                            Console.Write("Betrag: "); 
+                            k.Einzahlen(decimal.Parse(Console.ReadLine())); 
+                            break;
+                        case "3":
+                        Console.Write("Betrag: ");
+                        if (!k.Abheben(decimal.Parse(Console.ReadLine())))
+                            Console.WriteLine("Nicht genug Guthaben");
+                        else
+                            DatenSpeichern();
+                        break;
+                        case "4":
+                            Console.Write("Betrag: "); decimal b = decimal.Parse(Console.ReadLine());
+                            Console.Write("Zinssatz: "); double z = double.Parse(Console.ReadLine());
+                            Console.Write("Monate: "); int m = int.Parse(Console.ReadLine());
+                            k.FestgeldAnlegen(b, z, m);
+                            DatenSpeichern();
+                            break;
+                        case "5":
+                            Console.Write("Betrag: "); decimal kB = decimal.Parse(Console.ReadLine());
+                            Console.Write("Zinssatz: "); double kZ = double.Parse(Console.ReadLine());
+                            Console.Write("Monate: "); int kM = int.Parse(Console.ReadLine());
+                            k.KreditAufnehmen(kB, kZ, kM);
+                            DatenSpeichern();
+                            break;
+                        case "6":
+                            k.MonatsAbrechnung();
+                            Console.WriteLine("Abrechnung durchgeführt.");
+                            DatenSpeichern();
+                            break;
+                        case "0": return;
                     }
                 }
             }
 
+            static void DatenSpeichern()
+            {
+                File.WriteAllText(kundenDatei, JsonSerializer.Serialize(kunden));
+                File.WriteAllText(adminDatei, JsonSerializer.Serialize(admins));
+            }
+            
         }
+
     }
 }

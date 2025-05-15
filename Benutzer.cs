@@ -10,11 +10,8 @@ namespace MeinSEProjekt
     abstract class Benutzer
     {
 
-        public string BenutzerName { get; set; } = string.Empty;
-        public string Passwort { get; set; } = string.Empty;
-
-        
-        public Benutzer() { }
+        public string BenutzerName { get; private set; }
+        public string Passwort { get; private set; } 
 
         public Benutzer(string benutzername, string passwort) 
         {

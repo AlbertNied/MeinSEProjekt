@@ -11,8 +11,6 @@ namespace MeinSEProjekt
 
         public BankMitarbeiter(string benutzername, string passwort) : base(benutzername, passwort) { }
 
-        public string Benutzername { get; internal set; }
-
         public void Log(string nachricht)
         {
             File.AppendAllText("log.txt", $"[{DateTime.Now}] {nachricht}\n");
