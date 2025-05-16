@@ -4,19 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MeinSEProjekt
 {
-    abstract class Benutzer
+    public abstract class Benutzer
     {
 
-        public string BenutzerName { get; private set; }
-        public string Passwort { get; private set; } 
+        public string BenutzerName { get; set; }
+        public string Passwort { get; set; }
 
-        public Benutzer(string benutzername, string passwort) 
+        // Dieser Konstruktor wird beim Deserialisieren von JSON verwendet
+        [JsonConstructor]
+        public Benutzer(string benutzerName, string passwort)
+        {
+            BenutzerName = benutzerName;
+            Passwort = passwort; 
+        }
+
+        // Dieser wird bei manueller Registrierung verwendet
+        protected Benutzer(string benutzername, string passwort, bool istRegistrierung)
         {
             BenutzerName = benutzername;
-            Passwort = HashPasswort(passwort);
+            Passwort = istRegistrierung ? HashPasswort(passwort) : passwort;
         }
 
 
@@ -31,6 +42,5 @@ namespace MeinSEProjekt
             var hashBytes = sha.ComputeHash(Encoding.UTF8.GetBytes(passwort));
             return Convert.ToBase64String(hashBytes);
         }
-
     }
 }

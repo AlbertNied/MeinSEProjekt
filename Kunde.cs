@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MeinSEProjekt
 {
-    class Kunde : Benutzer, ITransaktion
+    public class Kunde : Benutzer, ITransaktion
 
     {
         public decimal Kontostand { get; private set; } 
         public decimal Festgeld { get; private set; } 
-        public decimal Kredit { get; private set; } 
+        public decimal Kredit { get; private set; }
 
-        public Kunde(string benutzername, string passwort) : base(benutzername, passwort) { }
+        // Für JSON: verwendet geerbten JsonConstructor aus Benutzer
+        [JsonConstructor]
+        public Kunde(string benutzername, string passwort, decimal kontostand, decimal festgeld, decimal kredit)
+            : base(benutzername, passwort)
+        {
+            Kontostand = kontostand;
+            Festgeld = festgeld;
+            Kredit = kredit;
+        }
 
-
-
+        // Für Registrierung
+        public Kunde(string benutzername, string passwort)
+            : base(benutzername, passwort, true) { }
 
         public void Einzahlen(decimal betrag) => Durchfueren(betrag);
 

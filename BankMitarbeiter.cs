@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MeinSEProjekt
 {
-    class BankMitarbeiter : Benutzer
+    public class BankMitarbeiter : Benutzer
     {
 
-        public BankMitarbeiter(string benutzername, string passwort) : base(benutzername, passwort) { }
+        [JsonConstructor]
+        public BankMitarbeiter(string benutzername, string passwort)
+            : base(benutzername, passwort) { }
+
+        public BankMitarbeiter(string benutzername, string passwort, bool istRegistrierung)
+            : base(benutzername, passwort, istRegistrierung) { }
 
         public void Log(string nachricht)
         {

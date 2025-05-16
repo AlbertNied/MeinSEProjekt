@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System;
+using System.ComponentModel.Design;
 
 namespace MeinSEProjekt
 {
@@ -17,24 +18,21 @@ namespace MeinSEProjekt
 
         static void Main()
         {
-
+            
             DatenLaden();
-
+            
             static void DatenLaden()
             {
                 if (File.Exists(kundenDatei))
                     kunden = JsonSerializer.Deserialize<List<Kunde>>(File.ReadAllText(kundenDatei)) ?? new List<Kunde>();
                 if (File.Exists(adminDatei))
-                    admins = JsonSerializer.Deserialize<List<BankMitarbeiter>>(File.ReadAllText(adminDatei)) ?? new List<BankMitarbeiter>();
+                    admins = JsonSerializer.Deserialize<List<BankMitarbeiter>>(File.ReadAllText(adminDatei)) ?? new List<BankMitarbeiter>();          
             }
-
 
             if (admins.Count == 0)
             {
                 Console.WriteLine("Noch kein Bankmitarbeiter registriert. Bitte registrieren.");
                 Registrieren(true);
-                
-
             }
 
             Console.WriteLine("Willkommen zur Banksoftware");
@@ -49,29 +47,35 @@ namespace MeinSEProjekt
                 string? auswahl = Console.ReadLine();
                 switch (auswahl)
                 {
-                    case "1": Login(false); break;
+                    case "1": if (kunden.Count != 0)
+                        { Login(false); break; }
+                        else
+                        {
+                            Console.WriteLine("Noch kein Kunde registriert!");
+                            break;
+                        }
                     case "2": Login(true); break;
-                    case "3": Registrieren(); break;
-                    case "4": DatenSpeichern(); return;
-                }
+                            case "3": Registrieren(); break;
+                            case "4": DatenSpeichern(); return;
+                            }
             }
 
             static void Registrieren(bool istAdmin = false)
             {
                 var (name, pw) = BenutzerAnmeldedaten();
 
-                if (istAdmin == true)
+                if (istAdmin)
                 {
-                    admins.Add(new BankMitarbeiter(name, pw));
+                    admins.Add(new BankMitarbeiter(name, pw, true));
                     Console.WriteLine("Bankmitarbeiter erfolgreich registriert.");
-                    
+
                 }
                 else
                 {
                     kunden.Add(new Kunde(name, pw));
                     Console.WriteLine("Kunde erfolgreich registriert.");
-                    
-                    
+
+
                 }
                 DatenSpeichern();
 
@@ -80,7 +84,6 @@ namespace MeinSEProjekt
 
             static (string name, string pw) BenutzerAnmeldedaten()
             {
-
                 string name, pw;
                 do
                 {
@@ -100,9 +103,11 @@ namespace MeinSEProjekt
             static void Login(bool istAdmin)
             {
                 var (name, pw) = BenutzerAnmeldedaten();
+                
                 List<Benutzer> benutzerListe = istAdmin ? new List<Benutzer>(admins) : new List<Benutzer>(kunden);
+               
                 var benutzer = benutzerListe.Find(b => b.BenutzerName == name && b.Pruefen(pw));
-
+                Console.WriteLine();
                 if (benutzer != null)
                 {
                     Console.WriteLine($"Login erfolgreich: {benutzer.BenutzerName}");
@@ -110,6 +115,7 @@ namespace MeinSEProjekt
                     if (benutzer is BankMitarbeiter admin)
                     {
                         admin.Log($"{admin.BenutzerName} hat sich eingeloggt.");
+                        AdminMenu(admin);
                     }
                     else if (benutzer is Kunde kunde)
                     {
@@ -127,7 +133,7 @@ namespace MeinSEProjekt
 
                 while (true)
                 {
-
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("1. Kontostand anzeigen");
                     Console.WriteLine("2. Einzahlen");
                     Console.WriteLine("3. Abheben");
@@ -140,20 +146,20 @@ namespace MeinSEProjekt
 
                     switch (kundeEingabe)
                     {
-                        case "1": 
-                            Console.WriteLine($"Kontostand: {k.Kontostand} EUR, Festgeld: {k.Festgeld}, Kredit: {k.Kredit}"); 
+                        case "1":
+                            Console.WriteLine($"Kontostand: {k.Kontostand} EUR, Festgeld: {k.Festgeld}, Kredit: {k.Kredit}");
                             break;
-                        case "2": 
-                            Console.Write("Betrag: "); 
-                            k.Einzahlen(decimal.Parse(Console.ReadLine())); 
+                        case "2":
+                            Console.Write("Betrag: ");
+                            k.Einzahlen(decimal.Parse(Console.ReadLine()));
                             break;
                         case "3":
-                        Console.Write("Betrag: ");
-                        if (!k.Abheben(decimal.Parse(Console.ReadLine())))
-                            Console.WriteLine("Nicht genug Guthaben");
-                        else
-                            DatenSpeichern();
-                        break;
+                            Console.Write("Betrag: ");
+                            if (!k.Abheben(decimal.Parse(Console.ReadLine())))
+                                Console.WriteLine("Nicht genug Guthaben");
+                            else
+                                DatenSpeichern();
+                            break;
                         case "4":
                             Console.Write("Betrag: "); decimal b = decimal.Parse(Console.ReadLine());
                             Console.Write("Zinssatz: "); double z = double.Parse(Console.ReadLine());
@@ -173,9 +179,95 @@ namespace MeinSEProjekt
                             Console.WriteLine("Abrechnung durchgeführt.");
                             DatenSpeichern();
                             break;
-                        case "0": return;
+                        case "0":
+                            Console.ResetColor();
+                            return;
                     }
                 }
+            }
+
+
+
+
+            static void AdminMenu(BankMitarbeiter admin)
+            {
+                while (true)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("\nAdmin-Menü:");
+                    Console.WriteLine("1. Alle Kunden anzeigen");
+                    Console.WriteLine("2. Kontostand eines Kunden einsehen");
+                    Console.WriteLine("3. Festgeld & Kredit eines Kunden prüfen");
+                    Console.WriteLine("4. Kunden entfernen");
+                    Console.WriteLine("0. Logout");
+
+                    string? eingabe = Console.ReadLine();
+                    if ((eingabe == "1" || eingabe == "2" || eingabe =="3" || eingabe == "4") && kunden.Count == 0)
+                    {
+                        Console.WriteLine("Noch kein Kunde registriert!");
+                    }
+                    else
+                        switch (eingabe)
+                        {
+                            case "1":
+                                Console.WriteLine("\nListe der Kunden:");
+                                admin.Log("Alle Kunden angezeigt.");
+                                foreach (var kunde in kunden)
+                                {
+                                    Console.WriteLine($"- {kunde.BenutzerName}");
+                                }
+                                if (kunden.Count == 0)
+                                    Console.WriteLine("Noch kein Kunde registriert!");
+                                break;
+
+                            case "2":
+                                Kunde? k = KundenAuswahl();
+                                if (k != null)
+                                {
+                                    Console.WriteLine($"Kontostand von {k.BenutzerName}: {k.Kontostand} EUR");
+                                    admin.Log($"Kontostand von {k.BenutzerName} eingesehen.");
+                                }
+                                break;
+
+                            case "3":
+                                Kunde? k2 = KundenAuswahl();
+                                if (k2 != null)
+                                {
+                                    Console.WriteLine($"Festgeld: {k2.Festgeld} EUR, Kredit: {k2.Kredit} EUR");
+                                    admin.Log($"Festgeld und Kredit von {k2.BenutzerName} eingesehen.");
+                                }
+                                break;
+
+                            case "4":
+                                Kunde? k3 = KundenAuswahl();
+                                if (k3 != null)
+                                {
+                                    kunden.Remove(k3);
+                                    Console.WriteLine($"Kunde {k3.BenutzerName} wurde entfernt.");
+                                    admin.Log($"Kunde {k3.BenutzerName} wurde gelöscht.");
+                                    DatenSpeichern();
+                                }
+                                break;
+
+                            case "0":
+                                Console.WriteLine("Logout erfolgreich.");
+                                Console.ResetColor();
+                                return;
+                        }
+                }
+            }
+
+            // Hilfsmethode zur Auswahl eines Kunden
+            static Kunde? KundenAuswahl()
+            {
+                Console.WriteLine("Bitte Kundennamen eingeben:");
+                string? name = Console.ReadLine();
+                var kunde = kunden.Find(k => k.BenutzerName == name);
+
+                if (kunde == null)
+                    Console.WriteLine("Kunde nicht gefunden!");
+
+                return kunde;
             }
 
             static void DatenSpeichern()
@@ -185,6 +277,8 @@ namespace MeinSEProjekt
             }
             
         }
-
     }
 }
+
+
+    
